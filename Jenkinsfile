@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "saishanker/flask-app"
-        EC2_IP = "13.48.30.159"
+        EC2_IP = "16.171.13.37"
     }
 
     stages {
@@ -34,7 +34,7 @@ pipeline {
                 ssh -i /var/lib/jenkins/.ssh/kubernetes_practice -o StrictHostKeyChecking=no ec2-user@$EC2_IP '
                 docker pull $IMAGE_NAME:$BUILD_ID &&
                 docker rm -f flask-app || true &&
-                docker run -d -p 80:5000 --name flask-app $IMAGE_NAME:$BUILD_ID
+                docker run -d -p 80:3000 --name flask-app $IMAGE_NAME:$BUILD_ID
                 '
                 """
             }
